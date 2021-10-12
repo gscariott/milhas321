@@ -25,3 +25,10 @@ Depois que não estiver mais usando o app, rodar:
 $ docker-compose down
 ```
 
+## Comandos úteis
+
+```
+$ sudo chown -R $USER:$USER .
+$ sudo service docker restart
+```
+
