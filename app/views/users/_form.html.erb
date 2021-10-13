@@ -12,21 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= form.label 'Nome' %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :password %>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Tipo de usuário' %>
+    <%= form.select :user_type, [ ['Usuário', 0], ['Companhia Aérea', 1] ] %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'CPF/CNPJ' %>
+    <%= form.number_field :cpf_cnpj %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Senha' %>
     <%= form.password_field :password %>
   </div>
 
   <div class="field">
-    <%= form.label :password_confirmation %>
+    <%= form.label 'Confirmação da senha' %>
     <%= form.password_field :password_confirmation %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Enviar' %>
   </div>
 <% end %>
