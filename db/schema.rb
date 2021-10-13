@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_002517) do
     t.datetime "updated_at", null: false
     t.string "name", limit: 191
     t.integer "cpf_cnpj"
-    t.integer "type", limit: 2
+    t.integer "user_type", limit: 2
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
