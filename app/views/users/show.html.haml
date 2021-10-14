@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Nome:
+  = @user.name
+%p
+  %strong Email:
+  = @user.email
+%p
+  %strong CPF/CNPJ:
+  = @user.cpf_cnpj
+%p
+  %strong Tipo de usuário:
+  = @user.type
+= link_to 'Edit', edit_user_path(@user)
+|
+= link_to 'Back', users_path
