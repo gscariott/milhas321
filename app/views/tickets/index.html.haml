@@ -19,7 +19,7 @@
   %tbody
     - @tickets.each do |ticket|
       %tr
-        %td= ticket.airline
+        %td= ticket.airline.name
         %td= ticket.flight
         %td= ticket.batch
         %td= ticket.max_cancellation_date

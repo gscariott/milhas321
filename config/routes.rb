@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :tickets
-  resources :airlines
   root 'home#index'
-  
+
+  resources :tickets
+  resources :airlines do
+    member do
+      get :new_batch
+      post :create_batch
+    end
+  end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   get 'signup', to: 'users#new', as: 'signup'

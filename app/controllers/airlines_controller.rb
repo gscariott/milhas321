@@ -1,5 +1,5 @@
 class AirlinesController < ApplicationController
-  before_action :set_airline, only: %i[ show edit update destroy ]
+  before_action :set_airline, only: %i[ show edit update destroy new_batch create_batch]
 
   # GET /airlines or /airlines.json
   def index
@@ -54,6 +54,46 @@ class AirlinesController < ApplicationController
       format.html { redirect_to airlines_url, notice: "Airline was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def new_batch
+  end
+
+  def create_batch
+    max_cancellation_date = DateTime.new(
+      params["max_cancellation_date(1i)"].to_i,
+      params["max_cancellation_date(2i)"].to_i,
+      params["max_cancellation_date(3i)"].to_i,
+      params["max_cancellation_date(4i)"].to_i,
+      params["max_cancellation_date(5i)"].to_i
+    )
+
+    departure = DateTime.new(
+      params["departure(1i)"].to_i,
+      params["departure(2i)"].to_i,
+      params["departure(3i)"].to_i,
+      params["departure(4i)"].to_i,
+      params["departure(5i)"].to_i
+    )
+
+
+    batch_params = {
+      airline: @airline,
+      flight: params[:flight],
+      batch: SecureRandom.uuid,
+      max_cancellation_date: max_cancellation_date,
+      departure: departure,
+      from: params[:from],
+      to: params[:to],
+      value: params[:value],
+      airplane: params[:airplane]
+    }
+
+    params[:batch_size].to_i.times do
+      Ticket.create(batch_params)
+    end
+
+    redirect_to @airline, notice: "Batch was successfully updated."
   end
 
   private

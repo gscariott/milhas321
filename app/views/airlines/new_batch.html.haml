@@ -1,20 +1,12 @@
-= form_for @ticket do |f|
-  - if @ticket.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
-      %ul
-        - @ticket.errors.full_messages.each do |message|
-          %li= message
+%h1 New ticket batch
 
-  .field
-    = f.label :airline
-    = f.text_field :airline_id
+= form_with(url: create_batch_airline_path(@airline), method: "post") do |f|
   .field
     = f.label :flight
     = f.text_field :flight
   .field
-    = f.label :batch
-    = f.number_field :batch
+    = f.label :batch_size
+    = f.number_field :batch_size
   .field
     = f.label :max_cancellation_date
     = f.datetime_select :max_cancellation_date
@@ -35,3 +27,5 @@
     = f.text_field :airplane
   .actions
     = f.submit 'Save'
+
+= link_to 'Back', airline_path(@airline)
