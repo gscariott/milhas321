@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :airlines
   root 'home#index'
   
   resources :users

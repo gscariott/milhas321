@@ -1,0 +1,25 @@
+%h1 Listing airlines
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Cpnj
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @airlines.each do |airline|
+      %tr
+        %td= airline.name
+        %td= airline.cpnj
+        %td= airline.user
+        %td= link_to 'Show', airline
+        %td= link_to 'Edit', edit_airline_path(airline)
+        %td= link_to 'Destroy', airline, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Airline', new_airline_path
