@@ -1,0 +1,37 @@
+%h1 Listing tickets
+
+%table
+  %thead
+    %tr
+      %th Airline
+      %th Flight
+      %th Batch
+      %th Max cancellation date
+      %th Departure
+      %th From
+      %th To
+      %th Value
+      %th Airplane
+      %th
+      %th
+      %th
+
+  %tbody
+    - @tickets.each do |ticket|
+      %tr
+        %td= ticket.airline
+        %td= ticket.flight
+        %td= ticket.batch
+        %td= ticket.max_cancellation_date
+        %td= ticket.departure
+        %td= ticket.from
+        %td= ticket.to
+        %td= ticket.value
+        %td= ticket.airplane
+        %td= link_to 'Show', ticket
+        %td= link_to 'Edit', edit_ticket_path(ticket)
+        %td= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Ticket', new_ticket_path

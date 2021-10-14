@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Airline:
+  = @ticket.airline
+%p
+  %b Flight:
+  = @ticket.flight
+%p
+  %b Batch:
+  = @ticket.batch
+%p
+  %b Max cancellation date:
+  = @ticket.max_cancellation_date
+%p
+  %b Departure:
+  = @ticket.departure
+%p
+  %b From:
+  = @ticket.from
+%p
+  %b To:
+  = @ticket.to
+%p
+  %b Value:
+  = @ticket.value
+%p
+  %b Airplane:
+  = @ticket.airplane
+
+= link_to 'Edit', edit_ticket_path(@ticket)
+\|
+= link_to 'Back', tickets_path

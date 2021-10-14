@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  airline: one
+  flight: MyString
+  batch: 1
+  max_cancellation_date: 2021-10-14 01:53:44
+  departure: 2021-10-14 01:53:44
+  from: MyString
+  to: MyString
+  value: 9.99
+  airplane: MyString
+
+two:
+  airline: two
+  flight: MyString
+  batch: 1
+  max_cancellation_date: 2021-10-14 01:53:44
+  departure: 2021-10-14 01:53:44
+  from: MyString
+  to: MyString
+  value: 9.99
+  airplane: MyString
