@@ -14,5 +14,14 @@ class User < ApplicationRecord
     type == :'Companhia Aérea'
   end
 
+  def create_airline
+    airline_params = {
+      name: name,
+      cnpj: cpf_cnpj,
+      user: self
+    }
+    Airline.create(airline_params)
+  end
+
   validates :email, presence: true, uniqueness: true
 end
