@@ -14,7 +14,7 @@ class AirlinesTest < ApplicationSystemTestCase
     visit airlines_url
     click_on "New Airline"
 
-    fill_in "Cpnj", with: @airline.cpnj
+    fill_in "cnpj", with: @airline.cnpj
     fill_in "Name", with: @airline.name
     fill_in "User", with: @airline.user_id
     click_on "Create Airline"
@@ -27,7 +27,7 @@ class AirlinesTest < ApplicationSystemTestCase
     visit airlines_url
     click_on "Edit", match: :first
 
-    fill_in "Cpnj", with: @airline.cpnj
+    fill_in "cnpj", with: @airline.cnpj
     fill_in "Name", with: @airline.name
     fill_in "User", with: @airline.user_id
     click_on "Update Airline"

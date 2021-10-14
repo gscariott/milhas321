@@ -4,11 +4,11 @@
   %b Name:
   = @airline.name
 %p
-  %b Cpnj:
-  = @airline.cpnj
+  %b cnpj:
+  = @airline.cnpj
 %p
   %b User:
-  = @airline.user
+  = @airline.user.name
 
 = link_to 'Edit', edit_airline_path(@airline)
 \|

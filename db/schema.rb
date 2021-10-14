@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_005928) do
 
   create_table "airlines", force: :cascade do |t|
     t.string "name"
-    t.integer "cpnj"
+    t.integer "cnpj"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

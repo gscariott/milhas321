@@ -4,7 +4,7 @@
   %thead
     %tr
       %th Name
-      %th Cpnj
+      %th cnpj
       %th User
       %th
       %th
@@ -14,8 +14,8 @@
     - @airlines.each do |airline|
       %tr
         %td= airline.name
-        %td= airline.cpnj
-        %td= airline.user
+        %td= airline.cnpj
+        %td= airline.user.name
         %td= link_to 'Show', airline
         %td= link_to 'Edit', edit_airline_path(airline)
         %td= link_to 'Destroy', airline, method: :delete, data: { confirm: 'Are you sure?' }

@@ -64,6 +64,6 @@ class AirlinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def airline_params
-      params.require(:airline).permit(:name, :cpnj, :user_id)
+      params.require(:airline).permit(:name, :cnpj, :user_id)
     end
 end

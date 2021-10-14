@@ -17,7 +17,7 @@ class AirlinesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create airline" do
     assert_difference('Airline.count') do
-      post airlines_url, params: { airline: { cpnj: @airline.cpnj, name: @airline.name, user_id: @airline.user_id } }
+      post airlines_url, params: { airline: { cnpj: @airline.cnpj, name: @airline.name, user_id: @airline.user_id } }
     end
 
     assert_redirected_to airline_url(Airline.last)
@@ -34,7 +34,7 @@ class AirlinesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update airline" do
-    patch airline_url(@airline), params: { airline: { cpnj: @airline.cpnj, name: @airline.name, user_id: @airline.user_id } }
+    patch airline_url(@airline), params: { airline: { cnpj: @airline.cnpj, name: @airline.name, user_id: @airline.user_id } }
     assert_redirected_to airline_url(@airline)
   end
 
