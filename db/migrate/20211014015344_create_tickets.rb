@@ -3,7 +3,7 @@ class CreateTickets < ActiveRecord::Migration[5.2]
     create_table :tickets do |t|
       t.references :airline, foreign_key: true
       t.string :flight
-      t.integer :batch
+      t.string :batch
       t.datetime :max_cancellation_date
       t.datetime :departure
       t.string :from

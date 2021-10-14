@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_015344) do
   create_table "tickets", force: :cascade do |t|
     t.bigint "airline_id"
     t.string "flight"
-    t.integer "batch"
+    t.string "batch"
     t.datetime "max_cancellation_date"
     t.datetime "departure"
     t.string "from"
