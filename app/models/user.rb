@@ -23,5 +23,13 @@ class User < ApplicationRecord
     Airline.create(airline_params)
   end
 
+  def redeem_miles(code)
+    code = code.to_sym
+    if CreditCard::API.is_code_valid?(code)
+      miles += CreditCard::API.get_qty(code)
+      CreditCard::API.invalidate_code(code)
+    end
+  end
+
   validates :email, presence: true, uniqueness: true
 end
