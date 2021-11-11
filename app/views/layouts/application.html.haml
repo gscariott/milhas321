@@ -2,10 +2,17 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Myapp
+    %title= 'Milhas321'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = link_to 'Home', root_path
+    \|
+    = link_to 'Tickets', tickets_path
+    \|
+    = link_to 'Airlines', airlines_path
+    \|
+    = link_to 'Users', users_path
     = yield
