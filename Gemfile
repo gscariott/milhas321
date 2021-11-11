@@ -17,7 +17,12 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem 'haml'
 
+# Password encryption
 gem 'bcrypt', '~> 3.1.7'
+
+# Bootstrap front-end toolkit
+gem 'bootstrap', '~> 4.2.1'
+gem 'jquery-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
