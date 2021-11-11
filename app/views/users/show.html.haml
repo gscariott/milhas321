@@ -9,6 +9,9 @@
   %strong CPF/CNPJ:
   = @user.cpf_cnpj
 %p
+  %strong Milhas:
+  = @user.miles
+%p
   %strong Tipo de usuário:
   = @user.type
 = link_to 'Edit', edit_user_path(@user)

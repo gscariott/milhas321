@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_secure_password
   has_one :airline, dependent: :destroy
 
+  validates :miles, numericality: { greater_than_or_equal_to: 0 } 
+
   after_create :create_airline, if: :is_airline?
 
   TYPES = [:'Usuário', :'Companhia Aérea', :'Suporte']

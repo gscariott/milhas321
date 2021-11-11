@@ -20,6 +20,9 @@
     = form.label 'CPF/CNPJ'
     = form.number_field :cpf_cnpj
   .field
+    = form.label 'Milhas'
+    = form.number_field :miles, min: 0
+  .field
     = form.label 'Senha'
     = form.password_field :password
   .field
