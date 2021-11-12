@@ -1,5 +1,6 @@
 class AirlinesController < ApplicationController
   before_action :set_airline, only: %i[ show edit update destroy new_batch create_batch]
+  before_action :authorize_user
 
   # GET /airlines or /airlines.json
   def index

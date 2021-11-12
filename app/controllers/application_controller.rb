@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_user
+    if current_user.present?
+      true
+    else
+      flash[:alert] = "Você precisa estar logado para ver essa página"
+      redirect_to login_path
+    end
+  end
+
 end
