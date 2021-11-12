@@ -21,7 +21,7 @@ gem 'haml'
 gem 'bcrypt', '~> 3.1.7'
 
 # Bootstrap front-end toolkit
-gem 'bootstrap', '~> 4.2.1'
+gem 'bootstrap', '~> 5.1'
 gem 'jquery-rails'
 
 # Use CoffeeScript for .coffee assets and views
