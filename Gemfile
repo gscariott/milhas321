@@ -17,6 +17,9 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem 'haml'
 
+# Nicer Rails console responses
+gem 'awesome_print', require: 'ap'
+
 # Password encryption
 gem 'bcrypt', '~> 3.1.7'
 
