@@ -1,0 +1,10 @@
+- if current_user
+  = link_to 'Home', root_path
+  \|
+  = link_to 'Passagens', tickets_path
+  \|
+  = link_to 'Linhas Aéreas', airlines_path
+  \|
+  = link_to 'Usuários', users_path
+  \|
+  = link_to 'Milhas', miles_user_path(current_user)
