@@ -26,7 +26,7 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: "Ticket was successfully created." }
+        format.html { redirect_to tickets_path, notice: "Ticket was successfully created." }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -9,3 +9,6 @@
   - if current_user.is_support?
     \|
     = link_to 'Gerenciamento', dashboard_path
+  - if current_user.is_airline?
+    \|
+    = link_to 'Gerenciar Companhia Aérea', airline_path(current_user.airline)

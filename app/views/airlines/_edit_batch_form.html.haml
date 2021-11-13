@@ -1,0 +1,11 @@
+= form_with(url: edit_batch_airline_path(airline), local: true) do |form|
+  .field
+    = form.label 'Tamanho do lote'
+    = form.number_field :size
+  .field
+    = form.label 'Preço'
+    = form.number_field :price, step: 0.01
+  .field
+    = form.hidden_field :batch, value: batch
+  .actions
+    = form.submit 'Enviar'

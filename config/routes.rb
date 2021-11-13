@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       get :new_batch
       post :create_batch
+      post :edit_batch
     end
   end
   resources :users do

@@ -1,5 +1,5 @@
 class AirlinesController < ApplicationController
-  before_action :set_airline, only: %i[ show edit update destroy new_batch create_batch]
+  before_action :set_airline, only: %i[ show edit edit_batch update destroy new_batch create_batch]
   before_action :authorize_user
 
   # GET /airlines or /airlines.json
@@ -9,6 +9,7 @@ class AirlinesController < ApplicationController
 
   # GET /airlines/1 or /airlines/1.json
   def show
+    @batches = @airline.tickets.distinct.pluck(:batch)
   end
 
   # GET /airlines/new
@@ -18,6 +19,30 @@ class AirlinesController < ApplicationController
 
   # GET /airlines/1/edit
   def edit
+  end
+
+  def edit_batch
+    batch_size =  Ticket.all.where(batch: params[:batch]).count
+    new_size = params[:size].to_i
+    if new_size > batch_size
+      diff = new_size - batch_size
+      ticket_params = Ticket.find_by(batch: params[:batch]).attributes
+      diff.times do
+        Ticket.create(ticket_params.except("id", "created_at", "updated_at"))
+      end
+    elsif batch_size > new_size
+      diff = batch_size - new_size
+      Ticket.all.where(batch: params[:batch]).last(diff).each do |t|
+        t.destroy
+      end
+    end
+
+    if params[:price].to_f != Ticket.find_by(batch: params[:batch]).value
+      Ticket.all.where(batch: params[:batch]).update_all(value: params[:price].to_f)
+    end
+    
+    flash[:notice] = "Lote editado com sucesso"
+    redirect_to airline_path(@airline)
   end
 
   # POST /airlines or /airlines.json
