@@ -3,6 +3,9 @@ class ManageController < ApplicationController
   before_action :authorize_support
   
   def dashboard
+    @users = User.all
+    @airlines = Airline.all
+    @tickets = Ticket.all
   end
 
   def site_show
