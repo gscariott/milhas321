@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  credit_card_number: 1
+  balance: 9.99
+  user: one
+
+two:
+  credit_card_number: 1
+  balance: 9.99
+  user: two

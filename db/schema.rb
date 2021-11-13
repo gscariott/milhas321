@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_181242) do
+ActiveRecord::Schema.define(version: 2021_11_13_205236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2021_11_13_181242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_airlines_on_user_id"
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.integer "credit_card_number"
+    t.decimal "balance"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bank_accounts_on_user_id"
   end
 
   create_table "miles_offers", force: :cascade do |t|
@@ -67,6 +76,7 @@ ActiveRecord::Schema.define(version: 2021_11_13_181242) do
   end
 
   add_foreign_key "airlines", "users"
+  add_foreign_key "bank_accounts", "users"
   add_foreign_key "miles_offers", "users"
   add_foreign_key "tickets", "airlines"
 end
