@@ -1,0 +1,6 @@
+= form_with(url: redeem_miles_user_path(current_user), local: true) do |form|
+  .field
+    = form.label 'Código'
+    = form.text_field :code
+  .actions
+    = form.submit 'Save'

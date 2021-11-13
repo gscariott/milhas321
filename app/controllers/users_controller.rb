@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :authorize_user, except: %i[ new ]
+  before_action :set_user, except: %i[ new create ]
+  before_action :authorize_user, except: %i[ new create ]
 
   # GET /users or /users.json
   def index
@@ -55,6 +55,19 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def miles
+  end
+
+  def redeem_miles
+    result = @user.redeem_miles(params[:code])
+    if result
+      flash[:notice] = "#{result} milhas resgatadas com sucesso!"
+    else
+      flash[:alert] = "Esse código é inválido!"
+    end
+    redirect_to miles_user_path(@user)
   end
 
   private

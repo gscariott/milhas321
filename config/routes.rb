@@ -8,7 +8,15 @@ Rails.application.routes.draw do
       post :create_batch
     end
   end
-  resources :users
+  resources :users do
+    member do
+      get :miles
+      post :redeem_miles
+      post :sell_miles
+      post :buy_miles
+    end
+  end
+  
   resources :sessions, only: [:new, :create, :destroy]
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'

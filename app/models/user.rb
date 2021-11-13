@@ -28,8 +28,10 @@ class User < ApplicationRecord
 
   def redeem_miles(code)
     if CreditCard::Miles.valid_code?(code)
-      self.update(miles: miles + CreditCard::Miles.get_quantity(code))
+      qty = CreditCard::Miles.get_quantity(code)
+      self.update(miles: miles + qty)
       CreditCard::Miles.redeem_code(code)
+      qty
     else
       false
     end

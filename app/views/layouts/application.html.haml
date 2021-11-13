@@ -10,11 +10,13 @@
   %body
     = link_to 'Home', root_path
     \|
-    = link_to 'Tickets', tickets_path
+    = link_to 'Passagens', tickets_path
     \|
-    = link_to 'Airlines', airlines_path
+    = link_to 'Linhas Aéreas', airlines_path
     \|
-    = link_to 'Users', users_path
+    = link_to 'Usuários', users_path
+    \|
+    = link_to 'Milhas', miles_user_path(current_user)
     = yield
 
     = render partial: 'layouts/toasts'
