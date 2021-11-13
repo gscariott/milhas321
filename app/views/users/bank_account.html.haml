@@ -1,0 +1,4 @@
+%h1 Banco ACME
+
+%h3= 'Número do cartão de crédito: ' + @account.credit_card_number.to_s
+%h3= "Saldo atual: R$ #{@account.balance.truncate(2)}"

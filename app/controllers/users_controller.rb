@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, except: %i[ new create index ]
+  before_action :set_user, except: %i[ new create index bank_account ]
   before_action :authorize_user, except: %i[ new create ]
 
   # GET /users or /users.json
@@ -93,6 +93,11 @@ class UsersController < ApplicationController
     end
 
     redirect_to miles_user_path(@user)
+  end
+
+  def bank_account
+    @account = current_user.bank_account
+    render :bank_account, layout: nil
   end
 
   private

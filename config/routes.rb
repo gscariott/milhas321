@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
   end
   
+  get 'bank_account', to: 'users#bank_account'
   
   scope 'manage' do
     get 'show', to: 'manage#site_show', as: 'site'
