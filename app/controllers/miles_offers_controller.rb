@@ -49,9 +49,11 @@ class MilesOffersController < ApplicationController
 
   # DELETE /miles_offers/1 or /miles_offers/1.json
   def destroy
+    qty = @miles_offer.quantity
+    @user = @miles_offer.user
     @miles_offer.destroy
     respond_to do |format|
-      format.html { redirect_to miles_offers_url, notice: "Miles offer was successfully destroyed." }
+      format.html { redirect_to miles_user_path(@user), notice: "Venda cancelada. #{qty} milhas restauradas" }
       format.json { head :no_content }
     end
   end
@@ -60,6 +62,10 @@ class MilesOffersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_miles_offer
       @miles_offer = MilesOffer.find(params[:id])
+    end
+
+    def restore_user_miles
+
     end
 
     # Only allow a list of trusted parameters through.
