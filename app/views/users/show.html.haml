@@ -13,9 +13,6 @@
 %p
   %strong Tipo de usuário:
   = @user.type
-
-= link_to 'Milhas', miles_user_path(@user)
-|
 = link_to 'Editar', edit_user_path(@user)
 |
-= link_to 'Voltar', users_path
+= link_to 'Deletar conta', user_path(@user), method: :delete, data: {confirm: 'Tem certeza que deseja deletar esta conta?' }

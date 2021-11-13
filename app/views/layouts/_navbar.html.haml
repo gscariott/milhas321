@@ -3,8 +3,9 @@
   \|
   = link_to 'Passagens', tickets_path
   \|
-  = link_to 'Linhas Aéreas', airlines_path
-  \|
-  = link_to 'Usuários', users_path
+  = link_to 'Perfil', user_path(current_user)
   \|
   = link_to 'Milhas', miles_user_path(current_user)
+  - if current_user.is_support?
+    \|
+    = link_to 'Gerenciamento', dashboard_path

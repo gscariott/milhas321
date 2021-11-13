@@ -1,5 +1,3 @@
 %h1 Editando usuário
 = render 'form', user: @user
-= link_to 'Detalhes', @user
-|
-= link_to 'Voltar', users_path
+= link_to 'Voltar', user_path(@user)
