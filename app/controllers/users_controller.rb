@@ -58,6 +58,7 @@ class UsersController < ApplicationController
   end
 
   def miles
+    @miles_offers =  MilesOffer.where(user_id: @user.id)
   end
 
   def redeem_miles

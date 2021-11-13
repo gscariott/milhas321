@@ -11,6 +11,8 @@ puts "** Creating seeds"
 
 puts "Creating 'admin' user"
 User.create(name: 'admin', email: 'admin@milhas321.com', cpf_cnpj: 1234567, user_type: 2, miles: 1000, password: 'admin')
+puts "Creating default site"
+Site.create(mile_price: 0.5)
 
 # Create CSV files for CreditCard::Miles API
 puts "Creating CSV files for CreditCard::Miles API"

@@ -18,6 +18,13 @@ Rails.application.routes.draw do
     end
   end
   
+  
+  scope 'manage' do
+    get 'show', to: 'manage#site_show', as: 'site'
+    patch 'update', to: 'manage#site_update', as: 'update_site'
+    get 'dashboard', to: 'manage#dashboard'
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
