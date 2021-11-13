@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :miles_offers
   root 'home#index'
 
   resources :tickets

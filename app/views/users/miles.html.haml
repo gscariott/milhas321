@@ -1,3 +1,9 @@
 %h1 Milhas
+
+%h3 Resgatar
 = render 'redeem_miles_form', user: @user
+%br
+%h3 Vender
+= render 'sell_miles_form', user: @user
+
 = link_to 'Back', users_path

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_one :airline, dependent: :destroy
+  has_many :miles_offers, dependent: :destroy
 
   validates :miles, numericality: { greater_than_or_equal_to: 0 } 
   validates :email, presence: true, uniqueness: true

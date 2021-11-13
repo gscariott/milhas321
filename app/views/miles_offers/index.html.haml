@@ -1,0 +1,25 @@
+%h1 Listing miles_offers
+
+%table
+  %thead
+    %tr
+      %th Quantity
+      %th Available
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @miles_offers.each do |miles_offer|
+      %tr
+        %td= miles_offer.quantity
+        %td= miles_offer.available
+        %td= miles_offer.user
+        %td= link_to 'Show', miles_offer
+        %td= link_to 'Edit', edit_miles_offer_path(miles_offer)
+        %td= link_to 'Destroy', miles_offer, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Miles offer', new_miles_offer_path

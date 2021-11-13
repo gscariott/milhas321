@@ -70,6 +70,30 @@ class UsersController < ApplicationController
     redirect_to miles_user_path(@user)
   end
 
+  def sell_miles  
+    qty = params[:quantity].to_i 
+    user_miles = @user.miles
+    begin
+      if qty > user_miles
+        flash[:alert] = "Milhas insuficientes - Tentativa: #{qty}, Disponíveis: #{user_miles}"
+      elsif qty == 0 # TO-DO: Better presence validation
+        raise
+      else
+        MilesOffer.create(
+        quantity: params[:quantity],
+        available: true, # TO-DO: Set true as the default value
+        user: @user
+        )
+        @user.update(miles: user_miles - qty)
+        flash[:notice] = "Milhas colocadas à venda com sucesso!"
+      end
+    rescue
+      flash[:alert] = "Erro ao colocar as milhas à venda"
+    end
+
+    redirect_to miles_user_path(@user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

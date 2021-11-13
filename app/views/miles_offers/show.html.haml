@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Quantity:
+  = @miles_offer.quantity
+%p
+  %b Available:
+  = @miles_offer.available
+%p
+  %b User:
+  = @miles_offer.user
+
+= link_to 'Edit', edit_miles_offer_path(@miles_offer)
+\|
+= link_to 'Back', miles_offers_path

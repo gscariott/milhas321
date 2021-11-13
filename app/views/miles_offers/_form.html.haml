@@ -1,0 +1,19 @@
+= form_for @miles_offer do |f|
+  - if @miles_offer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@miles_offer.errors.count, "error")} prohibited this miles_offer from being saved:"
+      %ul
+        - @miles_offer.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :quantity
+    = f.number_field :quantity
+  .field
+    = f.label :available
+    = f.check_box :available
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions
+    = f.submit 'Save'
