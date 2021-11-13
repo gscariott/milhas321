@@ -1,5 +1,6 @@
 class ManageController < ApplicationController
   before_action :set_site
+  before_action :authorize_support
   
   def dashboard
   end
@@ -17,6 +18,15 @@ class ManageController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_site
     @site = Site.first
+  end
+
+  def authorize_support
+    if current_user && current_user.is_support?
+      true
+    else
+      flash[:alert] = "Você não tem permissão para ver essa página"
+      redirect_to root_path
+    end
   end
 
   # Only allow a list of trusted parameters through.

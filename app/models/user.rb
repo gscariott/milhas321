@@ -18,6 +18,10 @@ class User < ApplicationRecord
     type == :'Companhia Aérea'
   end
 
+  def is_support?
+    type == :'Suporte'
+  end
+
   def create_airline
     airline_params = {
       name: name,
