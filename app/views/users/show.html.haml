@@ -13,6 +13,9 @@
 %p
   %strong Tipo de usuário:
   = @user.type
-= link_to 'Edit', edit_user_path(@user)
+
+= link_to 'Milhas', miles_user_path(@user)
 |
-= link_to 'Back', users_path
+= link_to 'Editar', edit_user_path(@user)
+|
+= link_to 'Voltar', users_path

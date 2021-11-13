@@ -1,31 +1,31 @@
 %p
-  %b Airline:
+  %b Companhia aérea:
   = @ticket.airline
 %p
-  %b Flight:
+  %b Voo:
   = @ticket.flight
 %p
-  %b Batch:
+  %b Aeronave:
+  = @ticket.airplane
+%p
+  %b Lote:
   = @ticket.batch
 %p
-  %b Max cancellation date:
-  = @ticket.max_cancellation_date
-%p
-  %b Departure:
+  %b Partida:
   = @ticket.departure
 %p
-  %b From:
+  %b Data máxima para cancelamento:
+  = @ticket.max_cancellation_date
+%p
+  %b Origem:
   = @ticket.from
 %p
-  %b To:
+  %b Destino:
   = @ticket.to
 %p
-  %b Value:
+  %b Preço:
   = @ticket.value
-%p
-  %b Airplane:
-  = @ticket.airplane
 
-= link_to 'Edit', edit_ticket_path(@ticket)
+= link_to 'Editar', edit_ticket_path(@ticket)
 \|
-= link_to 'Back', tickets_path
+= link_to 'Voltar', tickets_path

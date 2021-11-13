@@ -7,13 +7,10 @@
           %li= message
 
   .field
-    = f.label :name
+    = f.label 'Nome'
     = f.text_field :name
   .field
-    = f.label :cnpj
+    = f.label 'CNPJ'
     = f.number_field :cnpj
-  .field
-    = f.label :user
-    = f.text_field :user
   .actions
-    = f.submit 'Save'
+    = f.submit 'Salvar'

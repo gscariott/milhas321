@@ -1,17 +1,17 @@
-%h1 Listing tickets
+%h1 Passagens Aéreas
 
 %table
   %thead
     %tr
-      %th Airline
-      %th Flight
-      %th Batch
-      %th Max cancellation date
-      %th Departure
-      %th From
-      %th To
-      %th Value
-      %th Airplane
+      %th Companhia Aérea
+      %th Voo
+      %th Aeronave
+      %th Lote
+      %th Partida
+      %th Data máxima para cancelamento
+      %th Origem
+      %th Destino
+      %th Preço
       %th
       %th
       %th
@@ -21,15 +21,15 @@
       %tr
         %td= ticket.airline.name
         %td= ticket.flight
+        %td= ticket.airplane
         %td= ticket.batch
-        %td= ticket.max_cancellation_date
         %td= ticket.departure
+        %td= ticket.max_cancellation_date
         %td= ticket.from
         %td= ticket.to
         %td= ticket.value
-        %td= ticket.airplane
-        %td= link_to 'Show', ticket
-        %td= link_to 'Edit', edit_ticket_path(ticket)
-        %td= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Detalhes', ticket
+        %td= link_to 'Editar', edit_ticket_path(ticket)
+        %td= link_to 'Deletar', ticket, method: :delete, data: { confirm: 'Tem certeza?' }
 
 %br

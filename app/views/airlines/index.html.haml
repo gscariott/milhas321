@@ -1,11 +1,11 @@
-%h1 Listing airlines
+%h1 Companhias Aéreas
 
 %table
   %thead
     %tr
-      %th Name
-      %th cnpj
-      %th User
+      %th Nome
+      %th CNPJ
+      %th Usuário
       %th
       %th
       %th
@@ -16,8 +16,8 @@
         %td= airline.name
         %td= airline.cnpj
         %td= airline.user.name
-        %td= link_to 'Show', airline
-        %td= link_to 'Edit', edit_airline_path(airline)
-        %td= link_to 'Destroy', airline, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Mostrar', airline
+        %td= link_to 'Editar', edit_airline_path(airline)
+        %td= link_to 'Destruir', airline, method: :delete, data: { confirm: 'Tem certeza?' }
 
 %br

@@ -1,15 +1,15 @@
 %p
-  %b Name:
+  %b Nome:
   = @airline.name
 %p
-  %b cnpj:
+  %b CNPJ:
   = @airline.cnpj
 %p
-  %b User:
+  %b Usuário:
   = @airline.user.name
 
-= link_to 'New batch', new_batch_airline_path(@airline)
+= link_to 'Novo lote de passagens', new_batch_airline_path(@airline)
 \|
-= link_to 'Edit', edit_airline_path(@airline)
+= link_to 'Editar', edit_airline_path(@airline)
 \|
-= link_to 'Back', airlines_path
+= link_to 'Voltar', airlines_path

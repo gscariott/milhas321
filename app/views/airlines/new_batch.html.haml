@@ -1,31 +1,31 @@
-%h1 New ticket batch
+%h1 Criar lote de passagens
 
 = form_with(url: create_batch_airline_path(@airline), method: "post") do |f|
   .field
-    = f.label :flight
+    = f.label 'Código do voo'
     = f.text_field :flight
   .field
-    = f.label :batch_size
-    = f.number_field :batch_size
+    = f.label 'Código da aeronave'
+    = f.text_field :airplane
   .field
-    = f.label :max_cancellation_date
-    = f.datetime_select :max_cancellation_date
-  .field
-    = f.label :departure
+    = f.label 'Data de partida'
     = f.datetime_select :departure
   .field
-    = f.label :from
+    = f.label 'Data máxima para cancelamento'
+    = f.datetime_select :max_cancellation_date
+  .field
+    = f.label 'Origem'
     = f.text_field :from
   .field
-    = f.label :to
+    = f.label 'Destino'
     = f.text_field :to
   .field
-    = f.label :value
-    = f.text_field :value
+    = f.label 'Tamanho do lote'
+    = f.number_field :batch_size, min: 1
   .field
-    = f.label :airplane
-    = f.text_field :airplane
+    = f.label 'Preço'
+    = f.text_field :value
   .actions
-    = f.submit 'Save'
+    = f.submit 'Criar'
 
-= link_to 'Back', airline_path(@airline)
+= link_to 'Voltar', airline_path(@airline)

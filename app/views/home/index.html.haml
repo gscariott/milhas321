@@ -3,9 +3,9 @@
 %br
 %h1= 'Milhas321'
 - if current_user
-  = "Logged in as #{current_user.email}."
-  = link_to 'Log Out', logout_path
+  = "Logado como #{current_user.email}."
+  = link_to 'Sair', logout_path
 - else
-  = link_to 'Sign Up', signup_path
-  or
-  = link_to 'Log In', login_path
+  = link_to 'Criar conta', signup_path
+  ou
+  = link_to 'Login', login_path
