@@ -48,8 +48,16 @@ class User < ApplicationRecord
   end
   alias_method :receive, :refund
 
-  def validate_payment(payment)
-    if self.bank_account.balance >= payment
+  def validate_payment(payment, use_miles: false)
+    if use_miles
+      if miles * Site.first.mile_price >= payment
+        miles_to_subtract = (payment / Site.first.mile_price).to_i
+        self.update(miles: miles - miles_to_subtract)
+        return true
+      else
+        return false
+      end
+    elsif self.bank_account.balance >= payment
       pay(payment)
       return true
     else
