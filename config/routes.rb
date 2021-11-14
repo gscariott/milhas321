@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  resources :miles_offers
   root 'home#index'
 
-  resources :tickets
+  resources :miles_offers
+  resources :ticket_purchases, only: [:create, :update, :destroy]
+
+  resources :tickets do
+    member do
+      get :buy
+    end 
+  end
+
   resources :airlines do
     member do
       get :new_batch
@@ -10,9 +17,12 @@ Rails.application.routes.draw do
       post :edit_batch
     end
   end
+
   resources :users do
     member do
+      # resource
       get :miles
+      get :my_tickets, to:'users#my_tickets', as: 'my_tickets'
       post :redeem_miles
       post :sell_miles
       post :buy_miles

@@ -26,6 +26,8 @@
   %b Preço:
   = @ticket.value
 
+= link_to 'Comprar', buy_ticket_path(@ticket)
+\|
 = link_to 'Editar', edit_ticket_path(@ticket)
 \|
 = link_to 'Voltar', tickets_path

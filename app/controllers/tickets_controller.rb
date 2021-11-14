@@ -1,10 +1,10 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[ show edit update destroy ]
+  before_action :set_ticket, except: %i[ index new create ]
   before_action :authorize_user
 
   # GET /tickets or /tickets.json
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.not_sold
   end
 
   # GET /tickets/1 or /tickets/1.json
@@ -55,6 +55,10 @@ class TicketsController < ApplicationController
       format.html { redirect_to tickets_url, notice: "Ticket was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def buy
+    @needed_miles = (@ticket.value / site_configs.mile_price).to_i
   end
 
   private

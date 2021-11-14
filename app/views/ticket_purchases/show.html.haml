@@ -1,0 +1,31 @@
+%p
+  %b Companhia aérea:
+  = @ticket_purchase.airline.name
+%p
+  %b Voo:
+  = @ticket_purchase.ticket.flight
+%p
+  %b Aeronave:
+  = @ticket_purchase.ticket.airplane
+%p
+  %b Lote:
+  = @ticket_purchase.ticket.batch
+%p
+  %b Partida:
+  = @ticket_purchase.ticket.departure
+%p
+  %b Data máxima para cancelamento:
+  = @ticket_purchase.ticket.max_cancellation_date
+%p
+  %b Origem:
+  = @ticket_purchase.ticket.from
+%p
+  %b Destino:
+  = @ticket_purchase.ticket.to
+%p
+  %b Preço:
+  = @ticket_purchase.ticket.value
+
+= link_to 'Edit', edit_ticket_purchase_path(@ticket_purchase)
+\|
+= link_to 'Back', ticket_purchases_path

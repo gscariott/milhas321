@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def site_configs
+    Site.first
+  end
+
   def authorize_user
     if current_user.present?
       true

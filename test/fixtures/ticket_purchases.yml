@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  airline_id: 
+  ticket: one
+  cancelled_at: 2021-11-14 01:41:42
+
+two:
+  user_id: 
+  airline_id: 
+  ticket: two
+  cancelled_at: 2021-11-14 01:41:42

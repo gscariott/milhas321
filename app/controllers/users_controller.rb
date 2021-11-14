@@ -101,6 +101,10 @@ class UsersController < ApplicationController
     render :bank_account, layout: nil
   end
 
+  def my_tickets
+    @ticket_purchases = @user.ticket_purchases
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

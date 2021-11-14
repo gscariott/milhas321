@@ -1,7 +1,9 @@
 - if current_user
   = link_to 'Home', root_path
   \|
-  = link_to 'Passagens', tickets_path
+  = link_to 'Buscar passagens', tickets_path
+  \|
+  = link_to 'Minhas passagens', my_tickets_user_path(current_user)
   \|
   = link_to 'Perfil', user_path(current_user)
   \|

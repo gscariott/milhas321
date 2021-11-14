@@ -1,0 +1,25 @@
+%h1 Minhas passagens
+
+%table
+  %thead
+    %tr
+      %th Data de partida
+      %th Companhia Aérea
+      %th Origem
+      %th Destino
+      %th Preço
+      %th
+      %th
+
+  %tbody
+    - @ticket_purchases.each do |ticket_purchase|
+      %tr
+        %td= ticket_purchase.ticket.departure
+        %td= ticket_purchase.airline.name
+        %td= ticket_purchase.ticket.from
+        %td= ticket_purchase.ticket.to
+        %td= ticket_purchase.ticket.value
+        %td= link_to 'Detalhes', ticket_purchase.ticket
+        %td= link_to 'Cancelar', ticket_purchase, method: :delete, data: { confirm: 'Tem certeza que deseja cancelar essa passagem?' }
+
+%br

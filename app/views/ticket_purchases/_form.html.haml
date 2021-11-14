@@ -1,0 +1,22 @@
+= form_for @ticket_purchase do |f|
+  - if @ticket_purchase.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@ticket_purchase.errors.count, "error")} prohibited this ticket_purchase from being saved:"
+      %ul
+        - @ticket_purchase.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :user_id
+    = f.text_field :user_id
+  .field
+    = f.label :airline_id
+    = f.text_field :airline_id
+  .field
+    = f.label :ticket
+    = f.text_field :ticket
+  .field
+    = f.label :cancelled_at
+    = f.datetime_select :cancelled_at
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,27 @@
+%h1 Listing ticket_purchases
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Airline
+      %th Ticket
+      %th Cancelled at
+      %th
+      %th
+      %th
+
+  %tbody
+    - @ticket_purchases.each do |ticket_purchase|
+      %tr
+        %td= ticket_purchase.user_id
+        %td= ticket_purchase.airline_id
+        %td= ticket_purchase.ticket
+        %td= ticket_purchase.cancelled_at
+        %td= link_to 'Show', ticket_purchase
+        %td= link_to 'Edit', edit_ticket_purchase_path(ticket_purchase)
+        %td= link_to 'Destroy', ticket_purchase, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Ticket purchase', new_ticket_purchase_path

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_205236) do
+ActiveRecord::Schema.define(version: 2021_11_14_014142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,10 +48,24 @@ ActiveRecord::Schema.define(version: 2021_11_13_205236) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ticket_purchases", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "airline_id"
+    t.bigint "ticket_id"
+    t.string "payment_method"
+    t.datetime "cancelled_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airline_id"], name: "index_ticket_purchases_on_airline_id"
+    t.index ["ticket_id"], name: "index_ticket_purchases_on_ticket_id"
+    t.index ["user_id"], name: "index_ticket_purchases_on_user_id"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.bigint "airline_id"
     t.string "flight"
     t.string "batch"
+    t.boolean "sold", default: false
     t.datetime "max_cancellation_date"
     t.datetime "departure"
     t.string "from"
@@ -78,5 +92,8 @@ ActiveRecord::Schema.define(version: 2021_11_13_205236) do
   add_foreign_key "airlines", "users"
   add_foreign_key "bank_accounts", "users"
   add_foreign_key "miles_offers", "users"
+  add_foreign_key "ticket_purchases", "airlines"
+  add_foreign_key "ticket_purchases", "tickets"
+  add_foreign_key "ticket_purchases", "users"
   add_foreign_key "tickets", "airlines"
 end

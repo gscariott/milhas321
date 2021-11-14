@@ -4,6 +4,7 @@ class CreateTickets < ActiveRecord::Migration[5.2]
       t.references :airline, foreign_key: true
       t.string :flight
       t.string :batch
+      t.boolean :sold, default: false
       t.datetime :max_cancellation_date
       t.datetime :departure
       t.string :from

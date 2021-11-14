@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   has_one :airline, dependent: :destroy
   has_many :miles_offers, dependent: :destroy
+  has_many :ticket_purchases, dependent: :destroy
 
   # This model is not part of the application
   # It is used to perform fake payments
