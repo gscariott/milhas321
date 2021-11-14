@@ -7,6 +7,10 @@
 %h3 Vender
 = render 'sell_miles_form', user: @user
 %br
+%h3 Comprar
+%p= "Milhas disponíveis para compra: #{@miles_total}"
+= render 'buy_miles_form', user: @user
+%br
 %h3 Suas milhas em venda
 - unless @miles_offers.present?
   = 'Você não possui milhas em venda'

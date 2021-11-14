@@ -59,7 +59,8 @@ class UsersController < ApplicationController
   end
 
   def miles
-    @miles_offers =  MilesOffer.where(user_id: @user.id)
+    @miles_offers = MilesOffer.where(user_id: @user.id, available: true)
+    @miles_total = MilesOffer.pluck(:quantity).sum
   end
 
   def redeem_miles
@@ -91,6 +92,35 @@ class UsersController < ApplicationController
       end
     rescue
       flash[:alert] = "Erro ao colocar as milhas à venda"
+    end
+
+    redirect_to miles_user_path(@user)
+  end
+
+  def buy_miles
+    offers = MilesOffer.where(available: true).order(:created_at)
+    qty = params[:quantity].to_i
+    miles_total = MilesOffer.pluck(:quantity).sum
+    if miles_total >= qty
+      if @user.validate_payment(qty * site_configs.mile_price)
+        @user.update(miles: @user.miles + qty)
+        offers.each do |o|
+          if o.quantity >= qty
+            o.user.refund(qty * site_configs.mile_price)
+            o.update(available: false) if o.quantity == qty
+            o.update(quantity: o.quantity - qty)
+            break
+          else
+            o.user.refund(o.quantity * site_configs.mile_price)
+            qty = qty - o.quantity
+            o.update(quantity: 0, available: false)
+          end
+        end
+      else
+        flash[:alert] = "O pagamento foi recusado pelo banco"
+      end
+    else
+      flash[:alert] = "Quantidade de milhas disponíveis é menor do que o solicitado"
     end
 
     redirect_to miles_user_path(@user)

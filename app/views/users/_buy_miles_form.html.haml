@@ -1,0 +1,6 @@
+= form_with(url: buy_miles_user_path(current_user), local: true) do |form|
+  .field
+    = form.label 'Quantidade'
+    = form.number_field :quantity, min: 1
+  .actions
+    = form.submit 'Enviar'
