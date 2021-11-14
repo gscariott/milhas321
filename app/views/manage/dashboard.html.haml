@@ -3,6 +3,8 @@
 %h2 Milhas
 %h3= "Valor atual da milha: R$#{@site.mile_price}"
 = render 'sites/form', site: @site
+= link_to 'Gerenciar lista de ofertas de milhas', miles_offers_path
+%br
 %br
 
 %h2 Usuários

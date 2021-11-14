@@ -7,13 +7,14 @@
           %li= message
 
   .field
-    = f.label :quantity
+    = f.label :Quantidade
     = f.number_field :quantity
   .field
-    = f.label :available
+    = f.label :Disponível
     = f.check_box :available
   .field
-    = f.label :user
-    = f.text_field :user
+    = f.label :Usuário
+    - users_array = User.all.map{|u| [u.email, u.id]}
+    = f.select :user_id, options_for_select(users_array)
   .actions
-    = f.submit 'Save'
+    = f.submit 'Salvar'

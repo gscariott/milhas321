@@ -1,11 +1,11 @@
-%h1 Listing miles_offers
+%h1 Lista das ofertas de milhas
 
 %table
   %thead
     %tr
-      %th Quantity
-      %th Available
-      %th User
+      %th Quantidade
+      %th Disponível
+      %th Usuário
       %th
       %th
       %th
@@ -15,11 +15,11 @@
       %tr
         %td= miles_offer.quantity
         %td= miles_offer.available
-        %td= miles_offer.user
-        %td= link_to 'Show', miles_offer
-        %td= link_to 'Edit', edit_miles_offer_path(miles_offer)
-        %td= link_to 'Destroy', miles_offer, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= miles_offer.user.email
+        %td= link_to 'Detalhes', miles_offer
+        %td= link_to 'Editar', edit_miles_offer_path(miles_offer)
+        %td= link_to 'Deletar', miles_offer, method: :delete, data: { confirm: 'Tem certeza?' }
 
 %br
 
-= link_to 'New Miles offer', new_miles_offer_path
+= link_to 'Nova oferta de milhas', new_miles_offer_path
