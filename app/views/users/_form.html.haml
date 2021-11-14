@@ -19,9 +19,10 @@
   .field
     = form.label 'CPF/CNPJ'
     = form.number_field :cpf_cnpj
-  .field
-    = form.label 'Milhas'
-    = form.number_field :miles, min: 0
+  - if current_user&.is_support?
+    .field
+      = form.label 'Milhas'
+      = form.number_field :miles, min: 0, value: 0
   .field
     = form.label 'Senha'
     = form.password_field :password

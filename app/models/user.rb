@@ -7,7 +7,6 @@ class User < ApplicationRecord
   # It is used to perform fake payments
   has_one :bank_account, dependent: :destroy
 
-  validates :miles, numericality: { greater_than_or_equal_to: 0 } 
   validates :email, presence: true, uniqueness: true
 
   after_create :create_airline, if: :is_airline?
