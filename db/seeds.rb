@@ -20,6 +20,7 @@ puts "Creating one batch for Azul"
 batch_params = {
   flight: 'M321',
   airplane: 'BO747A',
+  batch: SecureRandom.uuid,
   departure: Time.now + 10.days,
   max_cancellation_date: Time.now + 9.days,
   from: 'Porto Alegre',
