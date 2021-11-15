@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
   def redeem_miles
     result = @user.redeem_miles(params[:code])
-    if result
+    if result >= 0
       flash[:notice] = "#{result} milhas resgatadas com sucesso!"
     else
       flash[:alert] = "Esse código é inválido!"
