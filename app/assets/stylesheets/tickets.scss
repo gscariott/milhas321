@@ -1,3 +1,31 @@
 // Place all the styles related to the Tickets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.ticket {
+    font-family: verdana, arial, helvetica, sans-serif;
+    border-style: solid;
+    padding: 20px;
+    border-radius: 12px;
+}
+.name {
+    font-size: 30px;
+    font-weight: bold;
+}
+.flight {
+    font-size: 42px;
+    font-weight: bold;
+}
+.max-cancel, .departure, .from, .to {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.value {
+    font-size: 42px;
+    font-weight: bold;
+}
+.btn-dark a {
+    color: #ffffff;
+    font-size: 24px;
+    text-decoration: none;
+}
