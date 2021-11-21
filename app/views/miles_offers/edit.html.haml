@@ -1,7 +1,8 @@
-%h1 Editing miles_offer
+.container.mt-5
+  %h1 Editar oferta de milha
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Show', @miles_offer
-\|
-= link_to 'Back', miles_offers_path
+  = link_to 'Detalhes', @miles_offer
+  \|
+  = link_to 'Voltar', miles_offers_path

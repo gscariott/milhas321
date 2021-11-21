@@ -1,31 +1,38 @@
-%h1 Criar lote de passagens
+-# <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+-#   <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+-#   <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+-#     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+-#   </div>
+-# </div>
 
-= form_with(url: create_batch_airline_path(@airline), method: "post") do |f|
-  .field
-    = f.label 'Código do voo'
-    = f.text_field :flight
-  .field
-    = f.label 'Código da aeronave'
-    = f.text_field :airplane
-  .field
-    = f.label 'Data de partida'
-    = f.datetime_select :departure
-  .field
-    = f.label 'Data máxima para cancelamento'
-    = f.datetime_select :max_cancellation_date
-  .field
-    = f.label 'Origem'
-    = f.text_field :from
-  .field
-    = f.label 'Destino'
-    = f.text_field :to
-  .field
-    = f.label 'Tamanho do lote'
-    = f.number_field :batch_size, min: 1
-  .field
-    = f.label 'Preço'
-    = f.text_field :value
-  .actions
-    = f.submit 'Criar'
-
-= link_to 'Voltar', airline_path(@airline)
+.container.mt-5.w-25
+  %h1= 'Criar lote de passagens'
+  = form_with(url: create_batch_airline_path(@airline), method: "post") do |f|
+    .mb-2
+      = f.label 'Código do voo', class: 'form-label'
+      = f.text_field :flight, class: 'form-control'
+    .mb-2
+      = f.label 'Código da aeronave', class: 'form-label'
+      = f.text_field :airplane, class: 'form-control'
+    .mb-0
+      = f.label 'Data de partida', class: 'form-label'
+    .mb-2
+      = f.datetime_select :departure, class: 'form-control'
+    .mb-0
+      = f.label 'Data máxima para cancelamento', class: 'form-label'
+    .mb-2
+      = f.datetime_select :max_cancellation_date, class: 'form-control'
+    .mb-2
+      = f.label 'Origem', class: 'form-label'
+      = f.text_field :from, class: 'form-control'
+    .mb-2
+      = f.label 'Destino', class: 'form-label'
+      = f.text_field :to, class: 'form-control'
+    .mb-2
+      = f.label 'Tamanho do lote', class: 'form-label'
+      = f.number_field :batch_size, min: 1, class: 'form-control'
+    .mb-2
+      = f.label 'Preço', class: 'form-label'
+      = f.text_field :value, class: 'form-control'
+    = f.submit 'Enviar', class: 'btn btn-dark mt-3'
+    = link_to 'Voltar', root_path, class: 'btn btn-dark mt-3'

@@ -1,13 +1,42 @@
-%h1 Comprar passagem
-%p= "Preço da passagem: R$ #{@ticket.value.truncate(2)}"
-%p= "Milhas necessárias para comprar: #{@needed_miles}"
-%p= "Quantidade atual de milhas: #{current_user.miles}"
-= form_with(model: TicketPurchase.new, local: true) do |form|
-  .field
-    = form.label 'Método de pagamento'
-    = form.select :payment_method, ['Milhas', 'Cartão de crédito']
-    = form.hidden_field :user_id, value: current_user.id
-    = form.hidden_field :airline_id, value: @ticket.airline.id
-    = form.hidden_field :ticket_id, value: @ticket.id
-  .actions
-    = form.submit 'Comprar'
+.container.mt-5.text-center
+  %h1.mb-5= 'Comprar passagem'
+  .row
+    .col
+      .row
+        .col
+          %h5= 'Companhia aérea'
+          %p= @ticket.airline.name
+        .col
+          %h5= 'Voo'
+          %p= @ticket.flight
+      .row
+        .col
+          %h5= 'Partida'
+          %p= @ticket.departure
+        .col
+          %h5= 'Data máxima de cancelamento'
+          %p= @ticket.max_cancellation_date
+      .row
+        .col
+          %h5= 'Origem'
+          %p= @ticket.from
+        .col
+          %h5= 'Destino'
+          %p= @ticket.to
+      .row
+        %h5= 'Lote'
+        %p= @ticket.batch
+    .col
+      -# %h5= 'Preço'
+      %h2= 'Total: R$ ' + ("%.2f" % @ticket.value)
+      %p= "Milhas necessárias para comprar: #{@needed_miles}"
+      %p= "Quantidade atual de milhas: #{current_user.miles}"
+      = form_with(model: TicketPurchase.new, local: true) do |form|
+        .mb-2
+          = form.label 'Método de pagamento', class: 'form-label text-start'
+          = form.select :payment_method, ['Milhas', 'Cartão de crédito']
+        = form.hidden_field :user_id, value: current_user.id
+        = form.hidden_field :airline_id, value: @ticket.airline.id
+        = form.hidden_field :ticket_id, value: @ticket.id
+        = form.submit 'Comprar', class: 'btn btn-dark mt-5'
+        = link_to 'Voltar', tickets_path, class: 'btn btn-dark mt-5'

@@ -1,11 +1,9 @@
 = form_with(url: edit_batch_airline_path(airline), local: true) do |form|
-  .field
-    = form.label 'Tamanho do lote'
-    = form.number_field :size
-  .field
-    = form.label 'Preço'
-    = form.number_field :price, step: 0.01
-  .field
-    = form.hidden_field :batch, value: batch
-  .actions
-    = form.submit 'Enviar'
+  .mb-2.text-start
+    = form.label 'Tamanho do lote', class: 'form-label'
+    = form.number_field :size, value: batch[:size], class: 'form-control'
+  .mb-2.text-start
+    = form.label 'Preço', class: 'form-label'
+    = form.number_field :price, step: 0.01, value: batch[:tickets_info].value, class: 'form-control'
+  = form.hidden_field :batch, value: batch[:code]
+  = form.submit 'Enviar', class: 'btn btn-dark'

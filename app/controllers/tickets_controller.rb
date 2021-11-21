@@ -4,7 +4,18 @@ class TicketsController < ApplicationController
 
   # GET /tickets or /tickets.json
   def index
-    @tickets = Ticket.not_sold
+    @searchable_tickets   ||= Ticket.not_sold
+    @searchable_from      ||= @searchable_tickets.pluck(:from).uniq
+    @searchable_to        ||= @searchable_tickets.pluck(:to).uniq
+
+    search_params = {from: params[:from], to: params[:to]}.reject {|p, v| v.blank? }
+    @filtered_tickets = @searchable_tickets.where(search_params)
+    unless params['departure(1i)'].blank?
+      date = Date.parse("#{params['departure(1i)']}-#{params['departure(2i)']}-#{params['departure(3i)']}")
+      @filtered_tickets = @filtered_tickets.where('departure > ? AND departure < ?', date.beginning_of_day, date.end_of_day)
+    end
+
+    @batches_with_tickets = @filtered_tickets.order(:created_at).group_by{ |t| t.batch }
   end
 
   # GET /tickets/1 or /tickets/1.json

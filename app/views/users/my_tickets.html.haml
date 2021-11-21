@@ -1,25 +1,32 @@
-%h1 Minhas passagens
-
-%table
-  %thead
-    %tr
-      %th Data de partida
-      %th Companhia Aérea
-      %th Origem
-      %th Destino
-      %th Preço
-      %th
-      %th
-
-  %tbody
-    - @ticket_purchases.each do |ticket_purchase|
-      %tr
-        %td= ticket_purchase.ticket.departure
-        %td= ticket_purchase.airline.name
-        %td= ticket_purchase.ticket.from
-        %td= ticket_purchase.ticket.to
-        %td= ticket_purchase.ticket.value
-        %td= link_to 'Detalhes', ticket_purchase.ticket
-        %td= link_to 'Cancelar', ticket_purchase, method: :delete, data: { confirm: 'Tem certeza que deseja cancelar essa passagem?' }
-
-%br
+.container.mt-5
+  %h1 Meu histórico de passagens
+  - unless @ticket_purchases.empty?
+    - @ticket_purchases.each do |tp|
+      .ticket.row
+        .col-sm-2
+          .row
+            .name= tp.ticket.airline.name
+          .row
+            .flight= tp.ticket.flight
+        .col-sm-3
+          .row
+            .max-cancel-title= 'Data máxima de cancelamento'
+            .max-cancel= tp.ticket.max_cancellation_date
+          .row
+            .departure-title= 'Data de partida'
+            .departure= tp.ticket.departure
+        .col-sm-2
+          .row
+            .from-title= "Origem"
+            .from= tp.ticket.from
+          .row
+            .to-title= "Destino"
+            .to= tp.ticket.to
+        .col-sm-2.d-flex.align-items-center.justify-content-center
+          .value= "R$ #{tp.ticket.value.round}"
+        .col-sm-1.d-flex.align-items-center.justify-content-center.flex-column
+          .details= link_to 'Detalhes', tp.ticket, class: 'btn btn-dark'
+        .col-sm-2.d-flex.align-items-center
+          .delete= link_to 'Cancelar', tp, method: :delete, class: 'btn btn-dark', data: { confirm: 'Tem certeza que deseja cancelar essa passagem?' }
+  - else
+    %p.mt-5= 'Você ainda não comprou nenhuma passagem.'

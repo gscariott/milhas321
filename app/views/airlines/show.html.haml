@@ -1,23 +1,17 @@
-%p
-  %b Nome:
-  = @airline.name
-%p
-  %b CNPJ:
-  = @airline.cnpj
-%p
-  %b Usuário:
-  = @airline.user.name
+.container.text-center.mt-5
+  .h1= 'Companhia aérea'
+  %p
+    %b Nome:
+    = @airline.name
+  %p
+    %b CNPJ:
+    = @airline.cnpj
+  %p
+    %b Usuário:
+    = @airline.user.name
 
-= link_to 'Novo lote de passagens', new_batch_airline_path(@airline)
-\|
-= link_to 'Editar linha aérea', edit_airline_path(@airline)
-\|
-= link_to 'Voltar', airlines_path
-%p
-%h2 Lotes
-- @batches.each do |batch|
-  %p= "Lote #{batch}"
-  = render 'edit_batch_form', batch: batch, airline: @airline
-  -# = button_to 'Cancelar venda', offer, method: :delete, data: {confirm: 'Tem certeza que deseja cancelar essa venda?'}
-
-
+  = link_to 'Editar linha aérea', edit_airline_path(@airline)
+  \|
+  = link_to 'Perfil do usuário da companhia aérea', user_path(current_user)
+  \|
+  = link_to 'Voltar', root_path

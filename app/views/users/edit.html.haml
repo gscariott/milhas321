@@ -1,3 +1,4 @@
-%h1 Editando usuário
-= render 'form', user: @user
-= link_to 'Voltar', user_path(@user)
+.container.mt-5.w-25
+  %h1 Editando usuário
+  = render 'form', user: @user
+  = link_to 'Voltar', user_path(@user), class: 'btn btn-dark mt-5'

@@ -1,33 +1,22 @@
 = form_with(model: user, local: true) do |form|
-  - if user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(user.errors.count, "error")
-        prohibited this user from being saved:
-      %ul
-        - user.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = form.label 'Nome'
-    = form.text_field :name
-  .field
-    = form.label :email
-    = form.email_field :email
-  .field
-    = form.label 'Tipo de usuário'
-    = form.select :user_type, [ ['Usuário', 0], ['Companhia Aérea', 1] ]
-  .field
-    = form.label 'CPF/CNPJ'
-    = form.number_field :cpf_cnpj
-  - if current_user&.is_support?
-    .field
-      = form.label 'Milhas'
-      = form.number_field :miles, min: 0, value: 0
-  .field
-    = form.label 'Senha'
-    = form.password_field :password
-  .field
-    = form.label 'Confirmação da senha'
-    = form.password_field :password_confirmation
-  .actions
-    = form.submit 'Enviar'
+  .d-grid.mx-auto.text-start
+    .mb-2
+      = form.label 'Nome', class: 'form-label'
+      = form.text_field :name, class: 'form-control'
+    .mb-2
+      = form.label :email, class: 'form-label'
+      = form.email_field :email, class: 'form-control'
+    .mb-2
+      = form.label 'Tipo de usuário', class: 'form-label'
+      = form.select :user_type, [ ['Usuário', 0], ['Companhia Aérea', 1] ], {}, class: 'form-select'
+    .mb-2
+      = form.label :cpf_cnpj, 'CPF/CNPJ', class: 'form-label'
+      = form.number_field :cpf_cnpj, class: 'form-control'
+    - if current_user&.is_support?
+      .mb-2
+        = form.label 'Milhas', class: 'form-label'
+        = form.number_field :miles, min: 0, value: user.miles, class: 'form-control'
+    .mb-0
+      = form.label 'Senha', class: 'form-label'
+      = form.password_field :password, class: 'form-control'
+    = form.submit 'Enviar', class: 'btn btn-dark mt-5'

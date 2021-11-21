@@ -38,19 +38,18 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: "Usuário atualizado!" }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      flash[:notice] = "Usuário atualizado!"
+      redirect_to @user
+    else
+      flash[:alert] = "Erro ao atualizar usuário! #{@user.errors.full_messages}"
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /users/1 or /users/1.json
   def destroy
+    @user.ticket_purchases.each { |tp| tp.ticket.update(sold: false) }
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: "Usuário destruido com sucesso!" }

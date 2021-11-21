@@ -1,22 +1,48 @@
-%h1 Milhas
-%h3= "Milhas atuais: #{@user.miles.to_s}"
+.container.mt-5
+  %h1 Milhas
+  .row
+    .col
+      .alert.alert-secondary.h-100.d-flex.flex-column.justify-content-center
+        %h5= "Milhas atuais: #{@user.miles.to_s}"
+    .col
+      .alert.alert-secondary.h-100.d-flex.flex-column.justify-content-center
+        %h5= "Milhas disponíveis para compra: #{@miles_total}"
+        %h5= "Valor por milha: R$ #{"%.2f" % site_configs.mile_price}"
 
-%h3 Resgatar
-= render 'redeem_miles_form', user: @user
-%br
-%h3 Vender
-= render 'sell_miles_form', user: @user
-%br
-%h3 Comprar
-%p= "Milhas disponíveis para compra: #{@miles_total}"
-= render 'buy_miles_form', user: @user
-%br
-%h3 Suas milhas em venda
-- unless @miles_offers.present?
-  = 'Você não possui milhas em venda'
--else
-  - @miles_offers.each do |offer|
-    = offer.quantity  
-    = button_to 'Cancelar venda', offer, method: :delete, data: {confirm: 'Tem certeza que deseja cancelar essa venda?'}
+  .row.row-cols-3.g-4.my-3
+    .col
+      .card.h-100
+        .card-header
+          %h3 Resgatar
+        .card-body
+          = render 'redeem_miles_form', user: @user
+    .col
+      .card.h-100
+        .card-header
+          %h3 Vender
+        .card-body
+          = render 'sell_miles_form', user: @user
+    .col
+      .card.h-100
+        .card-header
+          %h3 Comprar
+        .card-body
+          = render 'buy_miles_form', user: @user
+  %br
+  %h3 Suas milhas em venda
+  - unless @miles_offers.present?
+    = 'Você não possui milhas em venda'
+  -else
+    %table.table.text-center
+      %thead
+        %tr
+          %th Quantidade
+          %th Ação
+      %tbody
+        - @miles_offers.each do |offer|
+          %tr
+            %td= offer.quantity  
+            %td= button_to 'Cancelar venda', offer, method: :delete, data: {confirm: 'Tem certeza que deseja cancelar essa venda?'}
 
-= link_to 'Voltar', user_path(@user)
+  %br
+  = link_to 'Voltar', root_path, class: 'btn btn-dark mt-4'

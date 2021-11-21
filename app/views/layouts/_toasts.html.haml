@@ -1,5 +1,5 @@
 - if flash.any?
-  .toast-container{class: "position-absolute top-0 start-50 translate-middle-x pt-5", "aria-live": "polite", "aria-atomic": true}
+  .toast-container{class: "position-absolute top-0 start-50 translate-middle-x pt-4", "aria-live": "polite", "aria-atomic": true}
     - flash.each do |type, msg|
       .toast{class: "toast-auto toast-#{type} text-dark", role: "alert", "aria-live": "assertive", "aria-atomic": true, "data-delay": 5000}
         .toast-header

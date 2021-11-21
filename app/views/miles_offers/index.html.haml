@@ -1,25 +1,28 @@
-%h1 Lista das ofertas de milhas
+.container.mt-5
+  %h1 Lista das ofertas de milhas
 
-%table
-  %thead
-    %tr
-      %th Quantidade
-      %th Disponível
-      %th Usuário
-      %th
-      %th
-      %th
-
-  %tbody
-    - @miles_offers.each do |miles_offer|
+  %table.table
+    %thead
       %tr
-        %td= miles_offer.quantity
-        %td= miles_offer.available
-        %td= miles_offer.user.email
-        %td= link_to 'Detalhes', miles_offer
-        %td= link_to 'Editar', edit_miles_offer_path(miles_offer)
-        %td= link_to 'Deletar', miles_offer, method: :delete, data: { confirm: 'Tem certeza?' }
+        %th Quantidade
+        %th Disponível
+        %th Usuário
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @miles_offers.each do |miles_offer|
+        %tr
+          %td= miles_offer.quantity
+          %td= miles_offer.available
+          %td= miles_offer.user.email
+          %td= link_to 'Detalhes', miles_offer
+          %td= link_to 'Editar', edit_miles_offer_path(miles_offer)
+          %td= link_to 'Deletar', miles_offer, method: :delete, data: { confirm: 'Tem certeza?' }
 
-= link_to 'Nova oferta de milhas', new_miles_offer_path
+  %br
+
+  = link_to 'Nova oferta de milhas', new_miles_offer_path
+  |
+  = link_to 'Voltar', dashboard_path

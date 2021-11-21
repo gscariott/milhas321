@@ -1,3 +1,12 @@
-%h1 Nova conta
-= render 'form', user: @user
-= link_to 'Voltar', root_path
+.container-fluid.vh-100
+  .row.align-items-center.h-100.text-center
+    .col-6.h-100.border-end.border-5.border-dark.d-flex.flex-column.justify-content-center
+      %h1= 'Milhas321'
+      %h3= 'Bem-vindo'
+    .col-6.h-100.d-flex.flex-column.justify-content-center.align-items-center
+      %p
+        = 'Já tem uma conta?'
+        = link_to 'Fazer login', login_path
+      %h2= 'Criar conta'
+      .w-50.text-center
+        = render 'form', user: @user

@@ -1,34 +1,51 @@
-%h1 Passagens Aéreas
+.container.mt-5
+  %h1= 'Passagens Aéreas'
+  .mb-5
+    = form_with(url: tickets_path, method: :get, local: true) do |form|
+      .row
+        .col
+          = form.label :departure, 'Partida', class: 'form-label'
+          %br
+          = form.date_select :departure, {include_blank: true}
+        .col
+          = form.label :from, 'Origem', class: 'form-label'
+          = form.select :from, options_for_select(@searchable_from), {include_blank: true, value: params[:from]}, class: 'form-select'
+        .col
+          = form.label :to, 'Destino', class: 'form-label'
+          = form.select :to, options_for_select(@searchable_to), {include_blank: true}, class: 'form-select'
+      = form.submit 'Enviar', class: 'btn btn-dark'
+      = link_to 'Limpar pesquisa', tickets_path, class: 'btn btn-dark'
 
-.container
-  - @tickets.each do |ticket|
-    .ticket.row
-      .col-sm-2
-        .row
-          .name= ticket.airline.name
-        .row
-          .flight= ticket.flight
-      .col-sm-3
-        .row
-          .max-cancel-title= 'Data máxima de cancelamento'
-          .max-cancel= ticket.max_cancellation_date
-        .row
-          .departure-title= 'Data de partida'
-          .departure= ticket.departure
-      .col-sm-2
-        .row
-          .from-title= "Origem"
-          .from= ticket.from
-        .row
-          .to-title= "Destino"
-          .to= ticket.to
-      .col-sm-2.d-flex.align-items-center.justify-content-center
-        .value= "R$ #{ticket.value.round}"
-      .col-sm-1.d-flex.align-items-center.justify-content-center.flex-column
-        .details= link_to 'Detalhes', ticket
-        - if current_user.is_support?
-          .edit= link_to 'Editar', edit_ticket_path(ticket)
-          .delete= link_to 'Deletar', ticket, method: :delete, data: { confirm: 'Tem certeza?' }
-      .col-sm-2.d-flex.align-items-center.justify-content-center
-        .btn.btn-dark= link_to 'Comprar', buy_ticket_path(ticket)
-    %br
+  .container
+    - @batches_with_tickets.each do |batch_code, tickets|
+      .ticket.row
+        .col-sm-2
+          .row
+            .name= tickets.first.airline.name
+          .row
+            .flight= tickets.first.flight
+        .col-sm-3
+          .row
+            .max-cancel-title= 'Data máxima de cancelamento'
+            .max-cancel= tickets.first.max_cancellation_date
+          .row
+            .departure-title= 'Data de partida'
+            .departure= tickets.first.departure
+        .col-sm-2
+          .row
+            .from-title= "Origem"
+            .from= tickets.first.from
+          .row
+            .to-title= "Destino"
+            .to= tickets.first.to
+        .col-sm-2.d-flex.align-items-center.justify-content-center.flex-column
+          .value= "R$ #{tickets.first.value.round}"
+          = "Passagens restantes: #{tickets.count}" 
+        .col-sm-1.d-flex.align-items-center.justify-content-center.flex-column
+          - if current_user.is_support?
+            .details= link_to 'Detalhes', tickets.first
+            .edit= link_to 'Editar', edit_ticket_path(tickets.first)
+            .delete= link_to 'Deletar', tickets.first, method: :delete, data: { confirm: 'Tem certeza?' }
+        .col-sm-2.d-flex.align-items-center.justify-content-center
+          .btn.btn-dark= link_to 'Comprar', buy_ticket_path(tickets.first)
+      %br

@@ -1,11 +1,80 @@
-%br
-%br
-%br
-%h1= 'Milhas321'
 - if current_user
-  = "Logado como #{current_user.email}."
-  = link_to 'Sair', logout_path
+  .container.d-flex.flex-column.justify-content-center.h-75
+    .row.row-cols-2.text-center
+      - if current_user.is_airline?
+        .col
+          .card.mb-5
+            = link_to new_batch_airline_path(current_user.airline), class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-plus-circle"}
+              .card-body
+                %h3.card-title= 'Criar lote de passagens'
+                %p.card-text= 'Adicionar um novo lote de passagens para venda.'
+        .col
+          .card.mb-5
+            = link_to batches_airline_path(current_user.airline), class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-ticket-perferated"}
+              .card-body
+                %h3.card-title= 'Gerenciar lotes de passagens'
+                %p.card-text= 'Edite seus lotes de passagens.'
+        .col
+          .card
+            = link_to my_sales_airline_path(current_user.airline), class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-cash-coin"}
+              .card-body
+                %h3.card-title= 'Histórico de vendas'
+                %p.card-text= 'Veja detalhes de todas as suas passagens vendidas.'
+        .col
+          .card
+            = link_to airline_path(current_user.airline), class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-person-circle"}
+              .card-body
+                %h3.card-title= 'Gerenciar companhia aérea'
+                %p.card-text= 'Veja ou edite informações da companhia aérea.'
+      - else
+        .col
+          .card.mb-5
+            = link_to tickets_path, class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-search"}
+              .card-body
+                %h3.card-title= 'Buscar passagens'
+                %p.card-text= 'Encontre o destino perfeito para sua próxima viagem!'
+        .col
+          .card.mb-5
+            = link_to miles_user_path(current_user), class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-credit-card"}
+              .card-body
+                %h3.card-title= 'Gerenciar milhas'
+                %p.card-text= 'Adicione, compre, venda e edite suas milhas.'
+        .col
+          .card
+            = link_to my_tickets_user_path(current_user), class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-ticket-perferated"}
+              .card-body
+                %h3.card-title= 'Minhas passagens'
+                %p.card-text= 'Veja detalhes de todas as suas passagens.'
+        .col
+          .card
+            = link_to user_path(current_user), class: 'text-black text-decoration-none' do
+              .card-header.fs-1
+                %i{class: "bi bi-person-circle"}
+              .card-body
+                %h3.card-title= 'Perfil'
+                %p.card-text= 'Veja ou edite suas informações pessoais.'
 - else
-  = link_to 'Criar conta', signup_path
-  ou
-  = link_to 'Login', login_path
+  .container-fluid.h-100
+    .row.align-items-center.h-100.text-center
+      .col-6.h-100.border-end.border-5.border-dark.d-flex.flex-column.justify-content-center
+        %h1= 'Milhas321'
+        %h3= 'Bem-vindo'
+      .col-6.h-100.d-flex.flex-column.justify-content-center
+        %h3.mb-4= 'Comece a planejar sua próxima viagem'
+        .d-grid.gap-2.w-50.mx-auto
+          = link_to 'Criar conta', signup_path, class: 'btn btn-dark btn-lg'
+          = link_to 'Login', login_path, class: 'btn btn-dark btn-lg'

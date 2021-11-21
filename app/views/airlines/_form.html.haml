@@ -1,16 +1,16 @@
-= form_for @airline do |f|
-  - if @airline.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@airline.errors.count, "error")} prohibited this airline from being saved:"
-      %ul
-        - @airline.errors.full_messages.each do |message|
-          %li= message
-
-  .field
-    = f.label 'Nome'
-    = f.text_field :name
-  .field
-    = f.label 'CNPJ'
-    = f.number_field :cnpj
-  .actions
-    = f.submit 'Salvar'
+.container.mt-5
+  = form_for @airline do |f|
+    - if @airline.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@airline.errors.count, "error")} prohibited this airline from being saved:"
+        %ul
+          - @airline.errors.full_messages.each do |message|
+            %li= message
+    .mb-2
+      = f.label 'Nome', class: 'form-label'
+      = f.text_field :name, class: 'form-control'
+    .mb-2
+      = f.label :cnpj, 'CNPJ', class: 'form-label'
+      = f.number_field :cnpj, class: 'form-control'
+    = f.submit 'Salvar', class: 'btn btn-dark'
+    = link_to 'Voltar', airline_path(@airline), class: 'btn btn-dark'

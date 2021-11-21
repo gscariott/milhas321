@@ -3,7 +3,7 @@ class MilesOffersController < ApplicationController
 
   # GET /miles_offers or /miles_offers.json
   def index
-    @miles_offers = MilesOffer.all
+    @miles_offers = MilesOffer.all.order(:created_at)
   end
 
   # GET /miles_offers/1 or /miles_offers/1.json
@@ -25,7 +25,7 @@ class MilesOffersController < ApplicationController
 
     respond_to do |format|
       if @miles_offer.save
-        format.html { redirect_to @miles_offer, notice: "Miles offer was successfully created." }
+        format.html { redirect_to @miles_offer, notice: "Oferta de milha criada com sucesso!" }
         format.json { render :show, status: :created, location: @miles_offer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class MilesOffersController < ApplicationController
   def update
     respond_to do |format|
       if @miles_offer.update(miles_offer_params)
-        format.html { redirect_to @miles_offer, notice: "Miles offer was successfully updated." }
+        format.html { redirect_to miles_offers_path, notice: "Oferta de milha atualizada com sucesso!" }
         format.json { render :show, status: :ok, location: @miles_offer }
       else
         format.html { render :edit, status: :unprocessable_entity }
