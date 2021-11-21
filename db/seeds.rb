@@ -12,6 +12,8 @@ puts "*** Seeding ***"
 
 puts "Creating 'admin' user"
 User.create(name: 'admin', email: 'admin@milhas321.com', cpf_cnpj: 1234567, user_type: 2, miles: 1000, password: 'admin')
+# The bank account is not created automatically for Support type users
+User.first.create_bank_account
 
 puts "Creating 'Azul' airline user"
 User.create(name: 'Azul', email: 'azul@azul.com', cpf_cnpj: 123456789, user_type: 1, miles: 0, password: '123')
