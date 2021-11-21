@@ -1,0 +1,78 @@
+.container.text-center.my-5
+  %h2.mb-4= 'Gerenciar lotes de passagens'
+  = link_to new_batch_airline_path(@airline), {remote: true, 'data-bs-toggle' => "modal", 'data-bs-target' => '#new-batch-modal', class: 'btn btn-dark mb-5'}  do
+    = 'Novo lote de passagens'
+    %i{class: "bi bi-plus-circle ms-2"}
+  - @batches.each do |batch|
+    .row.d-flex.align-items-center.border.border-1.border-dark.p-3
+      .col
+        .row
+          %h5= 'Código do lote'
+          %p= "#{batch[:code]}"
+        .row
+          %h5= 'Tamanho do lote'
+          %p= "#{batch[:size]} passagens"
+      .col
+        .row
+          %h5= 'Voo'
+          %p= "#{batch[:tickets_info].flight}"
+        .row
+          %h5= 'Aeronave'
+          %p= "#{batch[:tickets_info].airplane}"
+      .col
+        .row
+          %h5= 'Origem'
+          %p= "#{batch[:tickets_info].from}"
+        .row
+          %h5= 'Destino'
+          %p= "#{batch[:tickets_info].to}"
+      .col
+        .row
+          %h5= 'Partida'
+          %p= "#{batch[:tickets_info].departure}"
+        .row
+          %h5= 'Cancelamento'
+          %p= "#{batch[:tickets_info].max_cancellation_date}"
+      .col
+        %h5= 'Preço'
+        %p= "R$ #{batch[:tickets_info].value}"
+      .col
+        = render 'edit_batch_form', batch: batch, airline: @airline
+        
+#new-batch-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h2= 'Criar lote de passagens'
+        %button{type: "button", class: "btn-close me-2 m-auto", "data-bs-dismiss": "modal", "aria-label": "Fechar"}
+      .modal-body
+        = form_with(url: create_batch_airline_path(@airline), method: "post") do |f|
+          .mb-2
+            = f.label 'Código do voo', class: 'form-label'
+            = f.text_field :flight, class: 'form-control'
+          .mb-2
+            = f.label 'Código da aeronave', class: 'form-label'
+            = f.text_field :airplane, class: 'form-control'
+          .mb-0
+            = f.label 'Data de partida', class: 'form-label'
+          .mb-2
+            = f.datetime_select :departure, class: 'form-select'
+          .mb-0
+            = f.label 'Data máxima para cancelamento', class: 'form-label'
+          .mb-2
+            = f.datetime_select :max_cancellation_date, class: 'form-select'
+          .mb-2
+            = f.label 'Origem', class: 'form-label'
+            = f.text_field :from, class: 'form-control'
+          .mb-2
+            = f.label 'Destino', class: 'form-label'
+            = f.text_field :to, class: 'form-control'
+          .mb-2
+            = f.label 'Tamanho do lote', class: 'form-label'
+            = f.number_field :batch_size, min: 1, class: 'form-control'
+          = f.label 'Preço', class: 'form-label'
+          .mb-2.input-group
+            %span.input-group-text= 'R$'
+            = f.text_field :value, class: 'form-control'
+          .mb-0.d-flex.justify-content-center
+            = f.submit 'Enviar', class: 'btn btn-dark mt-5 px-5'

@@ -1,0 +1,35 @@
+.container.mt-5
+  %h1 Histórico de vendas
+
+  .container
+    - unless @tickets.blank?
+      - @tickets.each do |batch_code, tickets|
+        .ticket.row
+          .col-2
+            .flight= tickets.first.flight
+            .fs-3= tickets.first.airplane
+          .col-4
+            .row
+              .max-cancel-title= 'Data máxima de cancelamento'
+              .max-cancel= tickets.first.max_cancellation_date
+            .row
+              .departure-title= 'Data de partida'
+              .departure= tickets.first.departure
+          .col-1
+            .row
+              .from-title= "Origem"
+              .from= tickets.first.from
+            .row
+              .to-title= "Destino"
+              .to= tickets.first.to
+          .col-5.d-flex.align-items-center.justify-content-center.flex-column
+            %h3= "Passagens vendidas: #{tickets.count}" 
+            %h3= "Valor obtido: R$ #{(tickets.first.value * tickets.count).round}"
+            - if current_user.is_support?
+              .col.d-flex.align-items-center.justify-content-center.flex-column
+                .details= link_to 'Detalhes', tickets.first
+                .edit= link_to 'Editar', edit_ticket_path(tickets.first)
+                .delete= link_to 'Deletar', tickets.first, method: :delete, data: { confirm: 'Tem certeza?' }
+    - else
+      %p.mt-5.d-inline-block= 'Ainda não foi registrada nenhuma venda'
+      %i.ms-1.bi.bi-emoji-frown

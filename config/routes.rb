@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   resources :airlines do
     member do
+      get :batches
       get :new_batch
       post :create_batch
       post :edit_batch
+      get :my_sales
     end
   end
 

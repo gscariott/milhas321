@@ -81,7 +81,17 @@ class AirlinesController < ApplicationController
     end
   end
 
+  def batches
+    @batches = @airline.tickets.order(:created_at).group_by{|t| t.batch}.map do |batch_code, tickets|
+      {code: batch_code, size: tickets.count, tickets_info: tickets.first}
+    end
+  end
+
   def new_batch
+  end
+
+  def my_sales
+    @tickets = @airline.tickets.sold.order(:created_at).group_by{ |t| t.batch }
   end
 
   def create_batch
